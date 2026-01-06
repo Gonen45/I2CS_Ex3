@@ -35,4 +35,9 @@ public class Index2D implements Pixel2D {
        ///////////////////////////////////
         return ans;
     }
+
+    public void change(int x, int y) {
+        this._y = y;
+        this._x = x;
+    }
 }
