@@ -118,16 +118,7 @@ public class Ex3Algo implements PacManAlgo{
 
 
     private int moveToPoint(PacmanGame game,int color) {
-//        Index2D p= null;
-//        String pos = game.getPos(0);
-//        int[] xy= posToInt(pos);
-//        p = new Index2D(xy[0],xy[1]);
-//        Map realmap= new Map(game.getGame(0));
-//        Map d_map = (Map) realmap.allDistance(p,Game.getIntColor(Color.BLUE, 0));
-//        ArrayList<Index2D> points=findMinIntersection(realmap,d_map,color);
-////        chose the best point from points by distance from ghosts:
-//        Index2D n_p= choseBestPoint(points,game);
-//        return moveToDir(n_p, game);
+//
 
         Index2D p = null;
         String pos = game.getPos(0);
@@ -140,9 +131,8 @@ public class Ex3Algo implements PacManAlgo{
         ArrayList<Index2D> points = findMinIntersection( d_map, realmap, color);
 
         // Calculate best point
-        Index2D n_p =points.getFirst(); //choseBestPoint(points, game);
+        Index2D n_p = choseBestPoint(points, game);
 
-        // FIX: If n_p is null (no food reachable), just return random direction immediately
         if (n_p == null) {
             System.out.println("randooooom "+ points.isEmpty());
             return randomDir();
@@ -172,22 +162,8 @@ private ArrayList<Index2D> findMinIntersection(Map2D distMap, Map2D colorMap, in
             }
         }
     }
-//    for (int y = 0; y < colorMap.getHeight(); y++) {
-//        for (int x = 0; x < colorMap.getWidth(); x++) {
-//            if (colorMap.getPixel(x, y) == targetColor) {
-//                int dist = distMap.getPixel(x, y);
-//                if (dist >= 0) {
-//                    if (dist < minDistance) {
-//                        minDistance = dist;
-//                        closestPoints.clear();
-//                        closestPoints.add(new Index2D(x, y));
-//                    } else if (dist == minDistance) {
-//                        closestPoints.add(new Index2D(x, y));
-//                    }
-//                }
-//            }
-//        }
-//    }
+//
+//
     return closestPoints;
 }
 
@@ -214,53 +190,6 @@ private static int moveToDir(Index2D target, PacmanGame game) {
 }
 
 
-//        int[] dirs = {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT};
-//        Map m= new Map(game.getGame(0));
-//        String pos = game.getPos(0);
-//        int[] xy= posToInt(pos);
-//        Index2D p = new Index2D(xy[0],xy[1]);
-//
-//        System.out.println("Pacman at: " + p);
-//        System.out.println("Target: " + new_point);
-//        int dist = m.allDistance(p, Game.getIntColor(Color.BLUE, 0)).getPixel(new_point.getX(), new_point.getY());
-//        System.out.println("Distance to target: " + dist);
-//
-//        if (dist == 1) {
-//            int ind;
-//            int r = m.getHeight();
-//            int c = m.getWidth();
-//            int[][] dirct = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-//            for(int[] d : dirct) {
-//                int nx = p.getX() + d[0];
-//                int ny = p.getY() + d[1];
-//                Index2D n_curr = new Index2D(nx, ny);
-//                    if (nx == c) {
-//                        nx = 0;
-//                    } else if (nx == -1) {
-//                        nx = c - 1;
-//                    }
-//
-//                    if (ny == r) {
-//                        ny = 0;
-//                    } else if (ny == -1) {
-//                        ny = r - 1;
-//                    }
-//
-//                    n_curr.change(nx, ny);
-//                    if(m.getPixel(n_curr)==Game.getIntColor(Color.PINK,0)){
-//                        ind = dirToPoint(p, n_curr);
-//                        return dirs[ind];
-//                    }
-//            }
-//        }
-//        Pixel2D[] arr = m.shortestPath(p,new_point,Game.getIntColor(Color.BLUE, 0));
-//        if (arr == null || arr.length < 2) {
-//            int ind = dirToPoint(p,new_point);
-//            return 2;
-//        }
-//        int ind = dirToPoint(p, (Index2D) arr[1]);
-//        return dirs[ind];
-//    }
 
     private static int dirToPoint(Index2D pos, Index2D dest){
 //        works based on {Game.UP, Game.LEFT, Game.DOWN, Game.RIGHT}
@@ -282,7 +211,7 @@ private static int moveToDir(Index2D target, PacmanGame game) {
 
         for (Index2D p : candidates) {
             int safety = ghostDanger.getPixel(p.getX(), p.getY());
-            if (safety > bestSafety) { // higher = safer
+            if ((safety > bestSafety) && bestSafety<8) { // higher = safer
                 bestSafety = safety;
                 best = p;
             }
@@ -290,26 +219,7 @@ private static int moveToDir(Index2D target, PacmanGame game) {
         return best;
     }
 
-//    }
-//        Map g_map=ghostsMap(game);
-//        if(points.isEmpty()) {
-//            String pos = game.getPos(0);
-//            int[] xy= posToInt(pos);
-//            Index2D p = new Index2D(xy[0],xy[1]);
-//            return p;
-//            }
-//        Index2D best_point=null;
-//        int max = -1;
-//        for(Index2D p: points){
-//            int dis = g_map.getPixel(p);
-//            if(dis>max){
-//                best_point=p;
-//                max=dis;
-//            }
-//        }
-//        return best_point;
-//    }
-
+//
 
 }
 
