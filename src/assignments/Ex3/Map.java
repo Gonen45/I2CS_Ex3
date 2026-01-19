@@ -11,7 +11,7 @@ import java.util.Collections;
  */
 public class Map implements Map2D {
 	private int[][] _map;
-	private boolean _cyclicFlag = true;
+	private boolean _cyclicFlag = GameInfo.CYCLIC_MODE;
 	
 	/**
 	 * Constructs a w*h 2D raster map with an init value v.
@@ -208,7 +208,8 @@ public class Map implements Map2D {
 		Pixel2D[] ans = null;  // the result.
 		/////// add your code below ///////
         if (this.isInside(p1) && this.isInside(p2)) {
-            if (p1.equals(p2)) {
+           // if (p1.equals(p2)) {
+            if (p1.getX()== p2.getX()&&p1.getY()==p2.getY()){
                 return new Pixel2D[]{p1};
             } else {
                 int r = this.getHeight();
@@ -226,7 +227,8 @@ public class Map implements Map2D {
 
                 while(!q.isEmpty()) {
                     Index2D curr = (Index2D)q.removeFirst();
-                    if (curr.equals(p2)) {
+                    //if (curr.equals(p2)) {
+                    if (curr.getX()== p2.getX()&&curr.getY()==p2.getY()){
                         found = true;
                         break;
                     }
@@ -276,7 +278,8 @@ public class Map implements Map2D {
                     return ans;
                 }
             }
-        } else {
+        }
+        else {
             throw new RuntimeException("p1 or p2 out of bounds");
         }
         ///////////////////////////////////
