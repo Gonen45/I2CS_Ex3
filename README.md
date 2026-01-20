@@ -1,4 +1,4 @@
-# ᗧ•••ᗣ Pac-Man AI Algorithm (Ex3)
+# ᗧ•••ᗣ Pac-Man AI Algorithm 
 This project is part of the Introduction to Computer Science course at Ariel University. The objective is to implement an autonomous Pac-Man agent for the Ex3 game engine. The algorithm is designed to navigate a maze, collect points (Pink targets), and actively evade ghosts using a heuristic safety map.
 
 ## How It Works
